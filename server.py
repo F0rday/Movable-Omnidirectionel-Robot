@@ -108,7 +108,10 @@ class regulation(clock.Action):
 		time.sleep(wait)#wait for the execution of the thread_regul
 
 
-#Function to control the speed  of the 3 wheels with the speed of forward/backward(u)(m/s);Go_left/Go_right(v)(m/s);turn_no_clockwise(w)(rad/s)
+#Function to control the speed  of the 3 wheels with the speed of 
+# forward/backward(u)(m/s);
+# Go_left/Go_right(v)(m/s);
+# turn_no_clockwise(w)(rad/s)
 def command(u,v,w):
 	global w1,w2,w3,thread_regul
 	w1=0
@@ -136,6 +139,14 @@ def command(u,v,w):
 	w2=(-(u)*sin((2**pi)/3)+v*cos((2*3*pi)/3)+1*w)/3
 	w3=(-(u)*sin((-2**pi)/3)+v*cos((-2*pi)/3)+1*w)/3
 
+def convertrad(deg):
+	return deg*pi/180
+
+def turn(deg,time_d):
+	command(0,0,convertrad(deg)/time_d)
+	time.sleep(time_d)
+	stop_motors()
+	
 def stop_motors():
 	
 	global w1,w2,w3,thread_regul

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+
+		<style>
+			body {background-color: rgb(185, 185, 185)}
+			h1 {color:blue}	
+			.noselect {
+			    /* Prevent text selection */
+			    -webkit-user-select: none;
+			    -khtml-user-select: none;
+			    -moz-user-select: none;
+			    -o-user-select: none;
+			    user-select: none;
+			}
+		</style>
+		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		
+		<script>
+			var isTouchSupported = 'ontouchstart' in window;
+			var startPressEvent = isTouchSupported ? "touchstart" : "mousedown";
+			var stopPressEvent = isTouchSupported ? "touchend" : "mouseup";
+
+			function move(e) {
+					$.post($(this).attr('id'));
+					e.stopPropagation();
+			}
+
+			function stop(e) {
+					$.post("stop");
+					e.stopPropagation();
+			}
+
+			function makeControl(domElementId) {
+				$(domElementId).bind(startPressEvent, move).bind(stopPressEvent, stop);
+			}
+
+			$(document).ready(function() {
+				makeControl("#forward");
+				makeControl("#backward");
+				makeControl("#turnLeft");
+				makeControl("#turnRight");
+			});
+		</script>
+	</head>
+
+	<html>
+		<head>
+		  <title>Control robot Omnidirectionel</title>
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <style>
+			body { font-family: Arial; text-align: center; margin:0px auto; padding-top: 30px;}
+			table { margin-left: auto; margin-right: auto; }
+			td { padding: 8 px; }
+			.button {
+			  background-color: #2f4468;
+			  border: none;
+			  color: white;
+			  padding: 10px 20px;
+			  text-align: center;
+			  text-decoration: none;
+			  display: inline-block;
+			  font-size: 18px;
+			  margin: 6px 3px;
+			  cursor: pointer;
+			  -webkit-touch-callout: none;
+			  -webkit-user-select: none;
+			  -khtml-user-select: none;
+			  -moz-user-select: none;
+			  -ms-user-select: none;
+			  user-select: none;
+			  -webkit-tap-highlight-color: rgba(0,0,0,0);
+			}
+			img {  width: auto ;
+			  max-width: 100% ;
+			  height: auto ; 
+			}
+		  </style>
+		</head>
+		<body>
+		  <h1>Robot Omnidirectionel AD</h1>
+		  <img src="/media/logo.png" id="photo" >
+		  <table>
+			<tr><td colspan="3" align="center"><button class="button" id =forward onmousedown="toggleCheckbox('forward');" ontouchstart="toggleCheckbox('forward');" onmouseup="toggleCheckbox('stop');" ontouchend="toggleCheckbox('stop');" >Forward</button></td></tr>
+			<tr><td align="center"><button class="button" id = turnLeft onmousedown="toggleCheckbox('left');" ontouchstart="toggleCheckbox('left');" onmouseup="toggleCheckbox('stop');" ontouchend="toggleCheckbox('stop');">Left</button></td>
+			<td align="center"><button class="button" id = turnRight onmousedown="toggleCheckbox('right');" ontouchstart="toggleCheckbox('right');" onmouseup="toggleCheckbox('stop');" ontouchend="toggleCheckbox('stop');">Right</button></td></tr>
+			<tr><td colspan="3" align="center"><button class="button" id = backward  onmousedown="toggleCheckbox('backward');" ontouchstart="toggleCheckbox('backward');" onmouseup="toggleCheckbox('stop');" ontouchend="toggleCheckbox('stop');">Backward</button></td></tr>                   
+		  </table>
+		</body>
+	  </html>
+
+</html>

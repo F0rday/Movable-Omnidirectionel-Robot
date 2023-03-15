@@ -34,6 +34,10 @@ def turn_left():
 def stop():
 	return ('', 204)
 
+@app.route("/confirm", methods=['GET', 'POST'])
+def confirm():
+	return ('', 204)
+
 try:
 	if __name__ == "__main__":
 		# setup_GPIO()

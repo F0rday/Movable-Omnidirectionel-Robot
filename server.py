@@ -24,8 +24,6 @@ PWM_max=0.99
 #pi = pi   
 COD = 1500/2.0/pi
 
-
-
 #Function to avoid over value of pwm
 def sature(v):
 	if(v>PWM_max):
@@ -117,7 +115,6 @@ def command(u,v,w):
 	w1=0
 	w2=0
 	w3=0
-	#thread_regul.toggle()#unpause the thread_regul
 	
 	thread_regul.cod1=0
 	thread_regul.cod2=0

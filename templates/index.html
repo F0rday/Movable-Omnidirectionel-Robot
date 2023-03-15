@@ -36,12 +36,16 @@
 			function makeControl(domElementId) {
 				$(domElementId).bind(startPressEvent, move).bind(stopPressEvent, stop);
 			}
+			function makeControlwithoutstop(domElementId) {
+				$(domElementId).bind(startPressEvent, move);
+			}
 
 			$(document).ready(function() {
 				makeControl("#forward");
 				makeControl("#backward");
 				makeControl("#turnLeft");
 				makeControl("#turnRight");
+				makeControlwithoutstop("#confirm");
 			});
 		</script>
 	</head>
@@ -83,6 +87,11 @@
 		  <h1>Robot Omnidirectionel AD</h1>
 		  <img src="" id="photo" >
 		  <table>
+			<label for="teta">Direction angle :</label>
+			<input type="text" id="teta" name="teta" required minlength="4" maxlength="8" size="10">
+			<label for="move">Moving :</label>
+			<input type="text" id="move" name="move" required minlength="4" maxlength="8" size="10">
+			<button class="button" id =confirm onmousedown="toggleCheckbox('confirm');" ontouchstart="toggleCheckbox('confirm');" >Confirm</button>
 			<tr><td colspan="3" align="center"><button class="button" id =forward onmousedown="toggleCheckbox('forward');" ontouchstart="toggleCheckbox('forward');" onmouseup="toggleCheckbox('stop');" ontouchend="toggleCheckbox('stop');" src="/images/right.png">Forward</button></td></tr>
 			<tr><td align="center"><button class="button" id = turnLeft onmousedown="toggleCheckbox('left');" ontouchstart="toggleCheckbox('left');" onmouseup="toggleCheckbox('stop');" ontouchend="toggleCheckbox('stop');">Left</button></td>
 			<td align="center"><button class="button" id = turnRight onmousedown="toggleCheckbox('right');" ontouchstart="toggleCheckbox('right');" onmouseup="toggleCheckbox('stop');" ontouchend="toggleCheckbox('stop');">Right</button></td></tr>
